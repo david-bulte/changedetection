@@ -9,6 +9,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
     <button (click)="addByNewRef()">add by new ref</button>
     <button (click)="addByMutateInTimeout()">add by mutate in timeout</button>
     <button (click)="addByNewRefInTimeout()">add by new ref in timeout</button>
+    <div>{{log}}</div>
 
     <hr>
     <app-child [count]="count"></app-child>
@@ -21,6 +22,10 @@ export class ParentComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  get log() {
+    return 'checking : ' + new Date();
   }
 
   addByMutate() {

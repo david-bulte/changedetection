@@ -12,7 +12,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
     <hr>
     <app-child [count]="count"></app-child>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ParentComponent implements OnInit {
 

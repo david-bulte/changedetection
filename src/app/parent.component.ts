@@ -5,12 +5,14 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   template: `
     <h3>parent</h3>
     count = {{count?.value}}
-    <button (click)="add()">add</button>
+    <button (click)="addByMutate()">add by mutate</button>
+    <button (click)="addByNewRef()">add by new ref</button>
+    <button (click)="addByMutateInTimeout()">add by mutate in timeout</button>
+    <button (click)="addByNewRefInTimeout()">add by new ref in timeout</button>
 
     <hr>
     <app-child [count]="count"></app-child>
-  `,
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  `
 })
 export class ParentComponent implements OnInit {
 
@@ -21,13 +23,22 @@ export class ParentComponent implements OnInit {
   ngOnInit() {
   }
 
-  add() {
-    // this.count.value = this.count.value + 1;
-    // this.count = {value: this.count.value + 1};
+  addByMutate() {
+    this.count.value = this.count.value + 1;
+  }
 
-    // changedetection is only run after dom event from inside this component or child component
+  addByNewRef() {
+    this.count = {value: this.count.value + 1};
+  }
+
+  addByMutateInTimeout() {
     setTimeout(() => {
-      // this.count.value = this.count.value + 1;
+      this.count.value = this.count.value + 1;
+    });
+  }
+
+  addByNewRefInTimeout() {
+    setTimeout(() => {
       this.count = {value: this.count.value + 1};
     });
   }

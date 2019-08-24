@@ -5,9 +5,11 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
   template: `
     <h3>child</h3>
     count = {{count?.value}}
-    <button (click)="add()">add</button>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    <button (click)="addByMutate()">add by mutate</button>
+    <button (click)="addByNewRef()">add by new ref</button>
+    <button (click)="addByMutateInTimeout()">add by mutate in timeout</button>
+    <button (click)="addByNewRefInTimeout()">add by new ref in timeout</button>
+  `
 })
 export class ChildComponent implements OnInit {
 
@@ -18,12 +20,23 @@ export class ChildComponent implements OnInit {
   ngOnInit() {
   }
 
-  add() {
-    // this.count.value = this.count.value + 1;
-    // this.count = {value: this.count.value + 1};
+  addByMutate() {
+    this.count.value = this.count.value + 1;
+  }
 
-    // setTimeout(() => {
-    //   this.count.value = this.count.value + 1;
-    // });
+  addByNewRef() {
+    this.count = {value: this.count.value + 1};
+  }
+
+  addByMutateInTimeout() {
+    setTimeout(() => {
+      this.count.value = this.count.value + 1;
+    });
+  }
+
+  addByNewRefInTimeout() {
+    setTimeout(() => {
+      this.count = {value: this.count.value + 1};
+    });
   }
 }

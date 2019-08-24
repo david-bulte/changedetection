@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 @Component({
   selector: 'app-child',
   template: `
-    <h3>2</h3>
+    <h3>child</h3>
     count = {{count?.value}}
     <button (click)="add()">add</button>
   `,

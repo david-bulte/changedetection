@@ -41,13 +41,17 @@ export class ParentComponent implements OnInit {
   }
 
   addByMutateInTimeout() {
+    console.log('clicked');
     setTimeout(() => {
+      console.log('executing callback');
       this.addByMutate();
     }, 1000);
   }
 
   addByNewRefInTimeout() {
+    console.log('clicked');
     setTimeout(() => {
+      console.log('executing callback');
       this.addByNewRef();
     }, 1000);
   }

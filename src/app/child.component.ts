@@ -39,13 +39,13 @@ export class ChildComponent implements OnInit {
   addByMutateInTimeout() {
     setTimeout(() => {
       this.addByMutate();
-    });
+    }, 1000);
   }
 
   addByNewRefInTimeout() {
     setTimeout(() => {
       this.addByNewRef();
-    });
+    }, 1000);
   }
 
   triggerChangeDetection() {

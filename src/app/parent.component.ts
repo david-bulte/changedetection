@@ -3,12 +3,13 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-parent',
   template: `
-    <h3>parent</h3>
+    <h3>parent w/ChangeDetection.OnPush</h3>
     count = {{count?.value}}
     <button (click)="addByMutate()">add by mutate</button>
-    <button (click)="addByNewRef()">add by new ref</button>
     <button (click)="addByMutateInTimeout()">add by mutate in timeout</button>
+    <button (click)="addByNewRef()">add by new ref</button>
     <button (click)="addByNewRefInTimeout()">add by new ref in timeout</button>
+    <button (click)="triggerChangeDetection()">just trigger change detection</button>
     <div>{{log}}</div>
 
     <hr>
@@ -26,7 +27,9 @@ export class ParentComponent implements OnInit {
   }
 
   get log() {
-    return 'checking : ' + new Date();
+    const log = 'checking : ' + new Date();
+    console.log('parent log', log);
+    return log;
   }
 
   addByMutate() {
@@ -39,14 +42,18 @@ export class ParentComponent implements OnInit {
 
   addByMutateInTimeout() {
     setTimeout(() => {
-      this.count.value = this.count.value + 1;
+      this.addByMutate();
     });
   }
 
   addByNewRefInTimeout() {
     setTimeout(() => {
-      this.count = {value: this.count.value + 1};
+      this.addByNewRef();
     });
+  }
+
+  triggerChangeDetection() {
+    return true;
   }
 
 }
